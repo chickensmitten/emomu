@@ -1,0 +1,9 @@
+<% @users.each do |user| %>
+  <div class='span8 well'>
+    <p>
+      <%= link_to user.username, user_path(user) %> 
+    </p>
+    <p>
+    </p>
+  </div>
+<% end %>

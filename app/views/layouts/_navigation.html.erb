@@ -1,0 +1,47 @@
+  <div class='navbar-header'>
+      <%= link_to "Emotion", root_path, class: 'navbar-brand'  %>
+  </div>  
+  <% if logged_in? %>
+  <div class="nav navbar-nav navbar-right">
+    <div class='nav_item btn'>
+      <%= link_to 'New Feeling', new_feeling_path, class: 'btn btn-success btn-small' %>
+    </div>
+    <div class='nav_item btn'>
+      <%= link_to 'New Status', new_post_path, class: 'btn btn-success btn-small' %>
+    </div>
+    <div class='btn btn-group nav_item'>
+      <%= link_to('', class: 'btn btn-default btn-small dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+        Click On: <strong><%= current_user.username %></strong>
+        <span class='caret'></span>
+      <% end %>
+      <ul class='dropdown-menu'>
+        <li>
+          <%= link_to edit_user_path(current_user) do %>
+            <i class='icon-pencil'></i>
+            edit profile
+          <% end %>
+        </li>
+        <li>
+          <%= link_to user_path(current_user) do %>
+            <i class='icon-user'></i>
+            view profile
+          <% end %>
+        </li>
+        <li>
+          <%= link_to logout_path do %>
+            <i class='icon-circle-arrow-left'></i>
+            logout
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>    
+  <% else # logged out%>
+    <div class='nav_item'>
+      <%= link_to 'Register', register_path, class: 'btn btn-success btn-small' %>
+    </div>
+    <div class='nav_item'>
+      <%= link_to 'Log in', login_path, class: 'btn btn-small' %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+<div class='span8 well'>
+  <%= render post.feelings %>
+  <p><%= link_to post.description, post_path(post) %> </p>
+  <p>
+    <span class='quiet'>status by</span> <%= link_to post.creator.username, user_path(post.creator) %>
+    <small>at <%= post.created_at %></small>
+  </p>
+</div>

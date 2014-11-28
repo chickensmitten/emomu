@@ -1,0 +1,9 @@
+<div class='well'>
+  <%= form_for @feeling do |f| %>
+    <div class='control-group'>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <%= f.submit "Create A Feeling", class: 'btn btn-success' %>
+  <% end %>
+</div>
