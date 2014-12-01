@@ -20,6 +20,8 @@
   <% end %>
 </p>
 
-<% @user.posts.each do |post| %>
+<% @feed_items.each do |post| %>
   <%= render 'posts/post', post: post %>
 <% end %>
+
+<%= will_paginate @feed_items %>

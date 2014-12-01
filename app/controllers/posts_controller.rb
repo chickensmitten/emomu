@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :vote]
+  before_action :set_post, only: [:edit, :show, :update]
   before_action :require_user, except: [:show, :index]
-  before_action :require_creator, only: [:edit, :update]
+  before_action :require_creator, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all.reverse
+    @posts = Post.paginate(:page => params[:page], :per_page => 5)
   end
 
   def show
+    @posts = Post.paginate(:page => params[:page], :per_page => 5)    
   end
 
   def new
@@ -18,6 +19,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.creator = current_user
     if @post.save
+      @post.create_activity :create, owner: current_user #from Public Activity gem. Using Common in Post Model.
       flash[:notice] = "Your post was created."
       redirect_to posts_path
     else
@@ -35,6 +37,10 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+
   end
 
   private

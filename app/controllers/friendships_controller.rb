@@ -1,6 +1,9 @@
 class FriendshipsController < ApplicationController
-  before_action :set_user, only: [:create, :destroy]
-  before_action :require_same_user, only: [:create, :destroy]
+  before_action :require_user, only: [:create, :destroy]  
+
+  def index
+
+  end
 
   def create
     @user = current_user.leader_friendships.build(follower_id: current_user.id, leader_id: params[:user_id])

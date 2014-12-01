@@ -19,6 +19,8 @@ class FeelingsController < ApplicationController
 
   def show
     @feeling = Feeling.find(params[:id])
+    @pages = @feeling.posts.order(created_at: :desc)
+    @post = @pages.paginate(:page => params[:page], :per_page => 5)   
   end
 
   private

@@ -1,8 +1,22 @@
-<div class='span8 well'>
-  <%= render post.feelings %>
-  <p><%= link_to post.description, post_path(post) %> </p>
-  <p>
-    <span class='quiet'>status by</span> <%= link_to post.creator.username, user_path(post.creator) %>
-    <small>at <%= post.created_at %></small>
+<div id="post-<%= post.id %>">
+  <small class='quiet text-left'> On <%= display_datetime(post.created_at) %></small>
+  </br>
+  </br>
+  <p class="text-center">
+    <%= render post.feelings %>
   </p>
+
+  <blockquote class="blockquote-reverse">
+    <p>
+      <%= link_to post.description, post_path(post) %>
+    </p>
+    <footer>
+      <span class='quiet'>
+        status by
+        <%= link_to post.creator.username, user_path(post.creator) %>
+      </span> 
+    </footer>
+  </blockquote> 
+  <hr>
+  </br>  
 </div>

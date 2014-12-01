@@ -1,13 +1,20 @@
-<div class='well'>
-  <%= form_tag '/login' do %>
-    <div class='control-group'>
-      <%= label_tag :username %>
-      <%= text_field_tag :username %>
-    </div>
-    <div class='control-group'>
-      <%= label_tag :password %>
-      <%= password_field_tag :password %>
-    </div>
-    <%= submit_tag 'Login', class: 'btn btn-success' %>
-  <% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1>Login</h1>
+  </div>
+  <div class="panel-body">
+    <%= form_tag '/login' do %>
+      <div class='form-group'>
+        <%= label_tag :username %>
+      </br>
+        <%= text_field_tag :username, nil, placeholder: "A name that puts a smile on your face.", class: "form-control" %>
+      </div>
+      <div class='form-group'>
+        <%= label_tag :password %>
+      </br>
+        <%= password_field_tag :password, nil, placeholder: "A reminder that touches your heart.", class: "form-control" %>
+      </div>
+      <%= submit_tag 'Login', class: 'btn btn-success' %>
+    <% end %>
+  </div>
 </div>
