@@ -12,7 +12,7 @@ gem 'autoprefixer-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'public_activity', '~> 1.4.2'
 gem 'will_paginate', '~> 3.0.6'
-gem 'bootstrap-will_paginate', '~> 0.0.10'
+gem 'pg_search' #to be implementated later.
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

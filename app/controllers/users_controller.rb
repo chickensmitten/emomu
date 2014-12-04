@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   before_action :require_same_user, only: [:edit, :update]    
 
   def show
-    @feed_items = @user.feed.paginate(:page => params[:page], :per_page => 5)   
+    @posts = @user.feed.paginate(:page => params[:page], :per_page => 30)   
   end
 
   def index
-    @users = User.paginate(:page => params[:page], :per_page => 5)   
+    @users = User.paginate(:page => params[:page], :per_page => 30)  
   end
 
   def new
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You're registered."
-      redirect_to root_path
+      redirect_to user_path(@user)
     else
       render :new
     end

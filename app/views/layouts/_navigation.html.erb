@@ -1,58 +1,67 @@
-  <div class='navbar-header'>
-      <%= link_to "Emotion", root_path, class: 'navbar-brand'  %>
-  </div>  
-  <% if logged_in? %>
-  <div class="nav navbar-nav navbar-right">
-    <div class='btn btn-group nav_item'>
-      <%= link_to('', class: 'btn btn-default btn-sm dropdown-toggle', 'data-toggle' => 'dropdown') do %>
-        Click On: <strong><%= current_user.username %></strong>
-        <span class='caret'></span>
-      <% end %>
-      <ul class='dropdown-menu'>
-        <li>
-          <%= link_to edit_user_path(current_user) do %>
-            <i class='icon-pencil'></i>
-            Edit Profile
+<% if logged_in? %>
+  <div class="container-fluid">
+    <div class='navbar-header'>
+        <%= link_to "Emomu", posts_path, class: 'navbar-brand'  %>
+    </div>      
+      <div class="nav navbar-header navbar-right">
+        <form class="navbar-form navbar-left" role="search">
+          <%= form_tag posts_path, method: :get do %>
+            <div class="form-group">
+              <input id="search" params=":search" name="search" placeholder="Search" type="text" class="form-control">
+            </div>  
+            <button class="btn btn-default" type="submit">Go!</button>
           <% end %>
-        </li>
-        <li>
-          <%= link_to user_path(current_user) do %>
-            <i class='icon-user'></i>
-            View Profile
+        </form>        
+        <div class='btn btn-group nav_item'>
+          <%= link_to('', class: 'btn btn-default dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+            Click On: <strong><%= current_user.username %></strong>
+            <span class='caret'></span>
           <% end %>
-        </li>
-        <li>
-          <%= link_to new_feeling_path do %>
-            New Feeling
-          <% end %>
-        </li> 
-        <li>
-          <%= link_to feelings_path do %>
-            Your Feelings
-          <% end %>
-        </li>                         
-        <li>
-          <%= link_to new_post_path do %>
-            New Status
-          <% end %>
-        </li>        
-        <li>
-          <%= link_to logout_path do %>
-            <i class='icon-circle-arrow-left'></i>
-            logout
-          <% end %>
-        </li>
-      </ul>
+          <ul class='dropdown-menu'>
+            <li>
+              <%= link_to user_path(current_user) do %>
+                <i class='icon-user'></i>
+                View Timeline
+              <% end %>
+            </li>            
+            <li>
+              <%= link_to edit_user_path(current_user) do %>
+                <i class='icon-pencil'></i>
+                Edit Profile
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_feeling_path do %>
+                New Feeling
+              <% end %>
+            </li>                         
+            <li>
+              <%= link_to new_post_path do %>
+                New Status
+              <% end %>
+            </li>        
+            <li>
+              <%= link_to logout_path do %>
+                <i class='icon-circle-arrow-left'></i>
+                Log Out
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>    
+      <% else # logged out%>
+      <div class="container-fluid">
+        <div class='navbar-header'>
+            <%= link_to "Emotion", root_path, class: 'navbar-brand'  %>
+        </div>        
+        <div class="nav navbar-header navbar-right">
+          <div class='nav_item'>
+            <%= link_to 'Register', register_path, class: 'btn btn-success btn-small' %>
+          </div>
+          <div class='nav_item'>
+            <%= link_to 'Log in', login_path, class: 'btn btn-warning btn-small' %>
+          </div>
+        </div>
     </div>
-  </div>    
-  <% else # logged out%>
-    <div class="nav navbar-nav navbar-right">
-      <div class='nav_item'>
-        <%= link_to 'Register', register_path, class: 'btn btn-success btn-small' %>
-      </div>
-      <div class='nav_item'>
-        <%= link_to 'Log in', login_path, class: 'btn btn-small' %>
-      </div>
-    </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

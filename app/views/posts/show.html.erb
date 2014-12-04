@@ -12,7 +12,7 @@
 
   <blockquote class="blockquote-reverse">
     <p>
-      <%= link_to @post.description, fix_url(@post.url) %>
+      <%= @post.description %>
     </p>
     <footer>
       <span class='quiet'>
@@ -21,6 +21,11 @@
       </span> 
     </footer>
   </blockquote> 
+  <p class="quiet text-center ">
+    <small>
+    <%= link_to "Originally posted here.", fix_url(@post.url) %>    
+    </small>
+  </p>     
   <hr>
   </br>  
 </div>

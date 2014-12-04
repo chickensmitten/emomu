@@ -4,11 +4,19 @@ class PostsController < ApplicationController
   before_action :require_creator, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.paginate(:page => params[:page], :per_page => 5)
+    if params[:search]
+      @posts = Post.search(params[:search]).paginate(page: params[:page], per_page: 30)
+    else
+      @posts = Post.paginate(page: params[:page], per_page: 30)
+    end
   end
 
   def show
-    @posts = Post.paginate(:page => params[:page], :per_page => 5)    
+    @posts = Post.paginate(page: params[:page], per_page: 30)   
+  end
+
+  def search
+    @results = Post.search_by_title(params[:search_term])
   end
 
   def new

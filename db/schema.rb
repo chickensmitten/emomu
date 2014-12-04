@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128103258) do
+ActiveRecord::Schema.define(version: 20141203225706) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 20141128103258) do
     t.datetime "updated_at"
   end
 
+  create_table "pg_search_documents", force: true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "post_feelings", force: true do |t|
     t.integer  "feeling_id"
     t.integer  "post_id"
@@ -58,12 +66,22 @@ ActiveRecord::Schema.define(version: 20141128103258) do
     t.datetime "updated_at"
   end
 
+  create_table "user_feelings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "feeling_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
 end

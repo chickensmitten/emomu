@@ -1,5 +1,5 @@
 class FeelingsController < ApplicationController
-  before_action :require_user, only: [:new, :create]
+  before_action :require_user, only: [:new, :create, :show]
 
 
   def new
@@ -20,7 +20,7 @@ class FeelingsController < ApplicationController
   def show
     @feeling = Feeling.find(params[:id])
     @pages = @feeling.posts.order(created_at: :desc)
-    @post = @pages.paginate(:page => params[:page], :per_page => 5)   
+    @posts = @pages.paginate(:page => params[:page], :per_page => 30)   
   end
 
   private

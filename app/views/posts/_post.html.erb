@@ -1,12 +1,11 @@
 <div id="post-<%= post.id %>">
-  <small class='quiet text-left'> On <%= display_datetime(post.created_at) %></small>
+  <small class='quiet text-left'> On <%= display_datetime(post.created_at) %></small>  
   </br>
   </br>
   <p class="text-center">
     <%= render post.feelings %>
   </p>
-
-  <blockquote class="blockquote-reverse">
+  <blockquote class="blockquote">
     <p>
       <%= link_to post.description, post_path(post) %>
     </p>
@@ -14,9 +13,14 @@
       <span class='quiet'>
         status by
         <%= link_to post.creator.username, user_path(post.creator) %>
-      </span> 
+      </span>   
     </footer>
   </blockquote> 
-  <hr>
+  <p class="quiet text-right ">
+    <small>
+    <%= link_to "Originally posted here.", fix_url(post.url) %>    
+    </small>
+  </p>  
+  <hr>  
   </br>  
 </div>

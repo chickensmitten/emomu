@@ -11,5 +11,12 @@ class Post < ActiveRecord::Base
   validates :description, presence: true
   validates :url, presence: true, uniqueness: true
 
+  self.per_page = 10
+
+
+  def self.search(search)
+    return [] if search.blank?
+    where("description LIKE ?", "%#{search}%")
+  end
 
 end
